@@ -2,6 +2,7 @@ from xml.etree.cElementTree import XML
 import zipfile
 import os
 import pickle
+import csv
 
 WORD_NAMESPACE = '{http://schemas.openxmlformats.org/wordprocessingml/2006/main}'
 PARA = WORD_NAMESPACE + 'p'
@@ -28,7 +29,14 @@ for file in os.listdir('./CV1/'):
 with open('expertise.pickle', 'wb') as f:
     pickle.dump(expertise, f)
 with open('competencies.pickle', 'wb') as f:
-    pickle.dump(expertise, f)
+    pickle.dump(competencies, f)
+
+with open('expertise.csv', 'w') as f:
+    wr = csv.writer(f)
+    wr.writerow(expertise)
+with open('competencies.csv', 'w') as f:
+    wr = csv.writer(f)
+    wr.writerow(competencies)
 
 # print('expertise = ' + str(expertise))
 # print('competencies = ' + str(competencies))
