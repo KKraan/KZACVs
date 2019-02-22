@@ -17,4 +17,6 @@ testfile.write(entire_document)
 dom = xml.dom.minidom.parseString(entire_document)
 
 names = dom.getElementsByTagName('w:t')
-print(names.firstChild.data)
+for name in names:
+        value = name.getAttribute("value")
+        print(value)
