@@ -1,26 +1,3 @@
-# import os
-# import sys
-
-# # Setting and changing to root dir from where this file is stored
-# ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
-# os.chdir(ROOT_DIR)
-
-# # Function to clear the terminal
-# def clear():
-#     os.system('cls' if os.name == 'nt' else 'clear')
-
-# # Function to open files
-# def open_file(filename):
-#     if os.name == 'nt':
-#         # On MacOS the below statement gives a lint error, hence the ignore
-#         os.startfile(filename)  # pylint: disable=E1101
-#     else:
-#         os.system('open ' + filename)
-
-
-# def clear():
-#     os.system('cls' if os.name == 'nt' else 'clear')
-
 #specific to extracting information from word documents
 import os
 import zipfile
@@ -30,7 +7,14 @@ import re
 import xml.dom.minidom
 
 
-document = zipfile.ZipFile('./Kraan, Kees.docx')
+document= zipfile.ZipFile('./Kraan, Kees.docx')
+document.read('word/document.xml')
+entire_document= document.read('word/document.xml')
 
-print(document.namelist())
-print(document.read('word/document.xml'))
+testfile= open("test.xml","wb")
+testfile.write(entire_document)
+
+dom = xml.dom.minidom.parseString(entire_document)
+
+names = dom.getElementsByTagName('w:t')
+print(names.firstChild.data)
