@@ -7,7 +7,7 @@ import re
 import xml.dom.minidom
 
 
-document= zipfile.ZipFile('./Kraan, Kees.docx')
+document= zipfile.ZipFile('./Data/Kraan, Kees.docx')
 document.read('word/document.xml')
 entire_document= document.read('word/document.xml')
 
